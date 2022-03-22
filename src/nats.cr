@@ -284,7 +284,7 @@ module NATS
     #
     # nats = NATS::Client.new
     # nats.subscribe "orders.created" do |msg|
-    #   order = Order.from_json(String.new(msg.payload))
+    #   order = Order.from_json(msg.data)
     #
     #   # ...
     # end
@@ -358,12 +358,12 @@ module NATS
     #   response.status = :service_unavailable
     # end
     # ```
-    def request(subject : String, payload : Payload = "", timeout : Time::Span = 2.seconds, headers : Headers? = nil) : Message?
+    def request(subject : String, data : Payload = "", timeout : Time::Span = 2.seconds, headers : Headers? = nil) : Message?
       channel = Channel(Message).new(1)
       inbox = NUID.next
       key = "#{@inbox_prefix}.#{inbox}"
       @inbox_handlers[key] = ->(msg : Message) { channel.send msg }
-      publish subject, payload, reply_to: key, headers: headers
+      publish subject, data, reply_to: key, headers: headers
 
       # TODO: Track how often we're making requests. If we're making requests
       # often enough, we don't need to flush the buffer after every request, and
@@ -389,14 +389,14 @@ module NATS
     # Make an asynchronous request to subscribers of the given `subject`, not
     # waiting for a response. The first message to come back will be passed to
     # the block.
-    def request(subject : String, payload : Payload = "", timeout = 2.seconds, &block : Message ->) : Nil
+    def request(subject : String, data : Payload = "", timeout = 2.seconds, &block : Message ->) : Nil
       inbox = NUID.next
       key = "#{@inbox_prefix}.#{inbox}"
       @inbox_handlers[key] = ->(msg : Message) do
         block.call msg
         @inbox_handlers.delete key
       end
-      publish subject, payload, reply_to: key
+      publish subject, data, reply_to: key
 
       spawn remove_key(key, after: timeout)
     end
@@ -406,7 +406,7 @@ module NATS
       @inbox_handlers.delete key
     end
 
-    # Send the given `payload` to the `msg`'s `reply_to` subject, often used in a
+    # Send the given `data` to the `msg`'s `reply_to` subject, often used in a
     # request/reply messaging model.
     #
     # ```
@@ -420,9 +420,9 @@ module NATS
     #   end
     # end
     # ```
-    def reply(msg : Message, payload : Payload, headers : Headers? = nil) : Nil
+    def reply(msg : Message, data : Payload, headers : Headers? = nil) : Nil
       if subject = msg.reply_to
-        publish subject, payload, nil, headers
+        publish subject, data, nil, headers
       end
     end
 
@@ -442,15 +442,15 @@ module NATS
     #   # ...
     # end
     # ```
-    def reply!(msg : Message, payload : Payload, headers : Headers? = nil) : Nil
+    def reply!(msg : Message, data : Payload, headers : Headers? = nil) : Nil
       if subject = msg.reply_to
-        publish subject, payload, nil, headers
+        publish subject, data, nil, headers
       else
         raise NotAReply.new("Cannot reply to a message that has no return address", msg)
       end
     end
 
-    # Publish the given message payload (either `Bytes` for binary data or `String` for text) on the given NATS subject, optionally supplying a `reply_to` subject (if expecting a reply or to notify the receiver where to send updates) and any `headers`.
+    # Publish the given message data (either `Bytes` for binary data or `String` for text) on the given NATS subject, optionally supplying a `reply_to` subject (if expecting a reply or to notify the receiver where to send updates) and any `headers`.
     #
     # ```
     # # Send an empty message to a subject
@@ -464,7 +464,7 @@ module NATS
     # reply_subject = "replies.orders.list.customer.123"
     # orders = [] of Order
     # nats.subscribe reply_subject do |msg|
-    #   case result = (Order | Complete).from_json(String.new(msg.payload))
+    #   case result = (Order | Complete).from_json(msg.data)
     #   in Order
     #     orders << result
     #   in Complete
@@ -483,12 +483,12 @@ module NATS
     #   "Nats-Msg-Id" => "order-submitted-#{order.id}-#{order.updated_at.to_json}",
     # }
     # ```
-    def publish(subject : String, payload : Payload = Bytes.empty, reply_to : String? = nil, headers : Message::Headers? = nil) : Nil
+    def publish(subject : String, data : Payload = Bytes.empty, reply_to : String? = nil, headers : Message::Headers? = nil) : Nil
       if message.bytesize > MAX_PUBLISH_SIZE
-        raise Error.new("Attempted to publish message of size #{payload.bytesize}. Cannot publish messages larger than #{MAX_PUBLISH_SIZE}.")
+        raise Error.new("Attempted to publish message of size #{data.bytesize}. Cannot publish messages larger than #{MAX_PUBLISH_SIZE}.")
       end
 
-      LOG.debug { "Publishing #{payload.bytesize} bytes to #{subject.inspect}, reply_to: #{reply_to.inspect}, headers: #{headers.inspect}" }
+      LOG.debug { "Publishing #{data.bytesize} bytes to #{subject.inspect}, reply_to: #{reply_to.inspect}, headers: #{headers.inspect}" }
       write do
         if headers
           @io << "HPUB "
@@ -508,23 +508,23 @@ module NATS
             bytes += key.bytesize + value.bytesize + 4 # 2 extra bytes for ": " and 2 for CR+LF
           end
           @io << ' ' << header_length
-          @io << ' ' << header_length + payload.bytesize << "\r\n"
+          @io << ' ' << header_length + data.bytesize << "\r\n"
           @io << nats_header_preamble
           headers.each do |key, value|
             @io << key << ": " << value << "\r\n"
           end
           @io << "\r\n"
         else
-          @io << ' ' << payload.bytesize << "\r\n"
+          @io << ' ' << data.bytesize << "\r\n"
         end
 
-        @io.write payload.to_slice
+        @io.write data.to_slice
         @io << "\r\n"
       end
     end
 
     def publish(message : Message) : Nil
-      publish message.subject, message.payload, message.reply_to, message.headers
+      publish message.subject, message.raw_data, message.reply_to, message.headers
     end
 
     # Flush the client's output buffer over the wire
@@ -664,12 +664,12 @@ module NATS
             raise Error.new("Invalid message declaration: #{line.inspect}")
           end
 
-          payload = Bytes.new(bytesize)
-          @socket.read_fully?(payload) || raise Error.new("Unexpected EOF")
+          data = Bytes.new(bytesize)
+          @socket.read_fully?(data) || raise Error.new("Unexpected EOF")
           @socket.skip 2 # CRLF
 
           if subscription = @subscriptions[sid]?
-            subscription.send Message.new(subject, payload, reply_to: reply_to, headers: headers) do |ex|
+            subscription.send Message.new(subject, data, reply_to: reply_to, headers: headers) do |ex|
               LOG.debug { "Error occurred in handling subscription #{sid}: #{ex}" }
               @on_error.call ex
             end
@@ -833,23 +833,29 @@ module NATS
 
   struct Message
     getter subject : String
-    getter payload : Bytes
+    # Returns the raw byte payload
+    getter raw_data : Bytes
+    # Returns the string representation of `raw_data`
+    getter data : String { String.new raw_data }
     getter reply_to : String?
-    getter headers : Headers?
+    # Returns the parsed headers data
+    #
+    # TODO: Should support duplicate keys. Maybe alias HTTP::Headers like the [Go client](https://github.com/nats-io/nats.go/blob/v1.13.0/nats.go#L3204).
+    getter headers : Headers { {} of String => String }
 
     alias Headers = Hash(String, String)
 
-    def initialize(@subject, @payload, @reply_to = nil, @headers = nil)
+    def initialize(@subject, @raw_data, @reply_to = nil, @headers = nil)
     end
 
-    @[Deprecated("Instantiating a new IO::Memory for each message made them heavier than intended, so we're now recommending using `String.new(msg.payload)`")]
+    @[Deprecated("Instantiating a new IO::Memory for each message made them heavier than intended, so we're now recommending using `String.new(msg.raw_data)`")]
     def body_io
       @body_io ||= IO::Memory.new(@body)
     end
 
-    @[Deprecated("`body` deprecated in favor of `payload` to conform with NATS protocol nomenclature")]
-    def body
-      @payload
+    @[Deprecated("`body` deprecated in favor of `data` or `raw_data` to conform with NATS protocol nomenclature")]
+    def body : Bytes
+      @raw_data
     end
   end
 
