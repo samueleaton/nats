@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Crystal Docs 1.2.0">
-<meta name="crystal_docs.project_version" content="1.2.0-dev">
+<meta name="crystal_docs.project_version" content="1.2.0">
 <meta name="crystal_docs.project_name" content="nats">
 
 
@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="nats">
-  <title>NATS::JetStream::Message - nats 1.2.0-dev</title>
+  <title>NATS::JetStream::Message - nats 1.2.0</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -39,7 +39,7 @@
       </h1>
 
       <span class="project-version">
-        1.2.0-dev
+        1.2.0
       </span>
     </div>
   </div>
@@ -66,8 +66,13 @@
       
     </li>
   
-  <li class=" " data-id="nats/NATS/Client/Data" data-name="nats::client::data">
-      <a href="../../NATS/Client/Data.html">Data</a>
+  <li class=" " data-id="nats/NATS/Client/Error" data-name="nats::client::error">
+      <a href="../../NATS/Client/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="nats/NATS/Client/Headers" data-name="nats::client::headers">
+      <a href="../../NATS/Client/Headers.html">Headers</a>
       
     </li>
   
@@ -81,18 +86,8 @@
       
     </li>
   
-  <li class=" " data-id="nats/NATS/Data" data-name="nats::data">
-      <a href="../../NATS/Data.html">Data</a>
-      
-    </li>
-  
   <li class=" " data-id="nats/NATS/Error" data-name="nats::error">
       <a href="../../NATS/Error.html">Error</a>
-      
-    </li>
-  
-  <li class=" " data-id="nats/NATS/Headers" data-name="nats::headers">
-      <a href="../../NATS/Headers.html">Headers</a>
       
     </li>
   
@@ -346,6 +341,11 @@
       
     </li>
   
+  <li class=" " data-id="nats/NATS/JetStream/Headers" data-name="nats::jetstream::headers">
+      <a href="../../NATS/JetStream/Headers.html">Headers</a>
+      
+    </li>
+  
   <li class="parent open current" data-id="nats/NATS/JetStream/Message" data-name="nats::jetstream::message">
       <a href="../../NATS/JetStream/Message.html">Message</a>
       
@@ -383,6 +383,11 @@
   
   <li class=" " data-id="nats/NATS/KV/Client" data-name="nats::kv::client">
       <a href="../../NATS/KV/Client.html">Client</a>
+      
+    </li>
+  
+  <li class=" " data-id="nats/NATS/KV/Data" data-name="nats::kv::data">
+      <a href="../../NATS/KV/Data.html">Data</a>
       
     </li>
   
@@ -476,6 +481,11 @@
       
     </li>
   
+  <li class=" " data-id="nats/NATS/Objects/Client/Watch" data-name="nats::objects::client::watch">
+      <a href="../../NATS/Objects/Client/Watch.html">Watch</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -486,6 +496,11 @@
       
     </li>
   
+  <li class=" " data-id="nats/NATS/Objects/Headers" data-name="nats::objects::headers">
+      <a href="../../NATS/Objects/Headers.html">Headers</a>
+      
+    </li>
+  
   <li class=" " data-id="nats/NATS/Objects/KeyError" data-name="nats::objects::keyerror">
       <a href="../../NATS/Objects/KeyError.html">KeyError</a>
       
@@ -493,6 +508,11 @@
   
 </ul>
 
+      
+    </li>
+  
+  <li class=" " data-id="nats/NATS/Payload" data-name="nats::payload">
+      <a href="../../NATS/Payload.html">Payload</a>
       
     </li>
   
@@ -588,7 +608,9 @@ it came from, how many times it's been delivered, etc.</p>
   </h2>
   
     
-      jetstream.cr
+      <a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L220" target="_blank">
+        jetstream.cr
+      </a>
     
     <br/>
   
@@ -608,7 +630,7 @@ it came from, how many times it's been delivered, etc.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28stream%2Cconsumer%2Cdelivered_count%2Cstream_seq%2Cconsumer_seq%2Ctimestamp%2Cpending%2Cbody%2Csubject%2Creply_to%2Cheaders%29-class-method" class="signature"><strong>.new</strong>(stream, consumer, delivered_count, stream_seq, consumer_seq, timestamp, pending, body, subject, reply_to, headers)</a>
+        <a href="#new%28stream%2Cconsumer%2Cdelivered_count%2Cstream_seq%2Cconsumer_seq%2Ctimestamp%2Cpending%2Craw_data%2Csubject%2Creply_to%2Cheaders%29-class-method" class="signature"><strong>.new</strong>(stream, consumer, delivered_count, stream_seq, consumer_seq, timestamp, pending, raw_data, subject, reply_to, headers)</a>
         
       </li>
     
@@ -636,13 +658,6 @@ it came from, how many times it's been delivered, etc.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#body%3ABytes-instance-method" class="signature"><strong>#body</strong> : Bytes</a>
-        
-          <div class="summary"><p>The original body of the message, encoded as binary.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#consumer%3AString-instance-method" class="signature"><strong>#consumer</strong> : String</a>
         
           <div class="summary"><p>The name of the consumer we received this message from</p></div>
@@ -657,6 +672,13 @@ it came from, how many times it's been delivered, etc.</p>
       </li>
     
       <li class="entry-summary">
+        <a href="#data%3AString-instance-method" class="signature"><strong>#data</strong> : String</a>
+        
+          <div class="summary"><p>The string encoded body of the message.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#delivered_count%3AInt64-instance-method" class="signature"><strong>#delivered_count</strong> : Int64</a>
         
           <div class="summary"><p>The number of times this particular message has been delivered by this consumer, starting at 1</p></div>
@@ -664,7 +686,7 @@ it came from, how many times it's been delivered, etc.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#headers%3AHeaders%3F-instance-method" class="signature"><strong>#headers</strong> : Headers?</a>
+        <a href="#headers%3AHeaders-instance-method" class="signature"><strong>#headers</strong> : Headers</a>
         
           <div class="summary"><p>Any headers that were published with this message, including ones interpreted by the NATS server, such as <code>Nats-Msg-Id</code> for message deduplication.</p></div>
         
@@ -674,6 +696,13 @@ it came from, how many times it's been delivered, etc.</p>
         <a href="#pending%3AInt64-instance-method" class="signature"><strong>#pending</strong> : Int64</a>
         
           <div class="summary"><p>How many messages follow this message for this consumer</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#raw_data%3ABytes-instance-method" class="signature"><strong>#raw_data</strong> : Bytes</a>
+        
+          <div class="summary"><p>The original body of the message, encoded as binary.</p></div>
         
       </li>
     
@@ -762,16 +791,18 @@ it came from, how many times it's been delivered, etc.</p>
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(stream,consumer,delivered_count,stream_seq,consumer_seq,timestamp,pending,body,subject,reply_to,headers)-class-method">
+    <div class="entry-detail" id="new(stream,consumer,delivered_count,stream_seq,consumer_seq,timestamp,pending,raw_data,subject,reply_to,headers)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(stream, consumer, delivered_count, stream_seq, consumer_seq, timestamp, pending, body, subject, reply_to, headers)
+        def self.<strong>new</strong>(stream, consumer, delivered_count, stream_seq, consumer_seq, timestamp, pending, raw_data, subject, reply_to, headers)
 
-        <a class="method-permalink" href="#new%28stream%2Cconsumer%2Cdelivered_count%2Cstream_seq%2Cconsumer_seq%2Ctimestamp%2Cpending%2Cbody%2Csubject%2Creply_to%2Cheaders%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28stream%2Cconsumer%2Cdelivered_count%2Cstream_seq%2Cconsumer_seq%2Ctimestamp%2Cpending%2Craw_data%2Csubject%2Creply_to%2Cheaders%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L305" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -794,6 +825,8 @@ instances, since JetStream is a layer on top of core NATS.</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L281" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -811,31 +844,6 @@ instances, since JetStream is a layer on top of core NATS.</p>
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="body:Bytes-instance-method">
-      <div class="signature">
-        
-        def <strong>body</strong> : Bytes
-
-        <a class="method-permalink" href="#body%3ABytes-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>The original body of the message, encoded as binary. If you need text,
-wrap the body in a <code>String</code>.</p>
-<pre><code class="language-crystal">jetstream.subscribe consumer <span class="k">do</span> <span class="o">|</span>msg<span class="o">|</span>
-  body_string <span class="o">=</span> <span class="t">String</span>.<span class="k">new</span>(msg.body)
-
-  <span class="c"># ...</span>
-<span class="k">end</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
     <div class="entry-detail" id="consumer:String-instance-method">
       <div class="signature">
         
@@ -851,6 +859,8 @@ wrap the body in a <code>String</code>.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L225" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -870,6 +880,34 @@ wrap the body in a <code>String</code>.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L235" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="data:String-instance-method">
+      <div class="signature">
+        
+        def <strong>data</strong> : String
+
+        <a class="method-permalink" href="#data%3AString-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The string encoded body of the message.</p>
+<pre><code class="language-crystal">jetstream.subscribe consumer <span class="k">do</span> <span class="o">|</span>msg<span class="o">|</span>
+  puts msg.data
+
+  <span class="c"># ...</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L252" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -891,15 +929,17 @@ consumer, starting at 1</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L229" target="_blank">View source</a>]
+        
       </div>
     </div>
   
-    <div class="entry-detail" id="headers:Headers?-instance-method">
+    <div class="entry-detail" id="headers:Headers-instance-method">
       <div class="signature">
         
-        def <strong>headers</strong> : <a href="../../NATS/Headers.html">Headers</a>?
+        def <strong>headers</strong> : <a href="../../NATS/JetStream/Headers.html">Headers</a>
 
-        <a class="method-permalink" href="#headers%3AHeaders%3F-instance-method">#</a>
+        <a class="method-permalink" href="#headers%3AHeaders-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -911,6 +951,8 @@ deduplication.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L276" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -931,6 +973,35 @@ deduplication.</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L241" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="raw_data:Bytes-instance-method">
+      <div class="signature">
+        
+        def <strong>raw_data</strong> : Bytes
+
+        <a class="method-permalink" href="#raw_data%3ABytes-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>The original body of the message, encoded as binary. If you need text,
+use <code><a href="../../NATS/JetStream/Message.html#data%3AString-instance-method">#data</a></code>.</p>
+<pre><code class="language-crystal">jetstream.subscribe consumer <span class="k">do</span> <span class="o">|</span>msg<span class="o">|</span>
+  <span class="t">String</span>.<span class="k">new</span>(msg.raw_data) <span class="o">==</span> msg.data <span class="c"># =&gt; true</span>
+
+  <span class="c"># ...</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L264" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -949,6 +1020,8 @@ deduplication.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L271" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -969,6 +1042,8 @@ deduplication.</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L222" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -987,6 +1062,8 @@ deduplication.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L232" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1008,6 +1085,8 @@ most likely is) different from the subject it was delivered to</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L268" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -1026,6 +1105,8 @@ most likely is) different from the subject it was delivered to</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L238" target="_blank">View source</a>]
         
       </div>
     </div>

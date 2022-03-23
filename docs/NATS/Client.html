@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Crystal Docs 1.2.0">
-<meta name="crystal_docs.project_version" content="1.2.0-dev">
+<meta name="crystal_docs.project_version" content="1.2.0">
 <meta name="crystal_docs.project_name" content="nats">
 
 
@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="nats">
-  <title>NATS::Client - nats 1.2.0-dev</title>
+  <title>NATS::Client - nats 1.2.0</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -39,7 +39,7 @@
       </h1>
 
       <span class="project-version">
-        1.2.0-dev
+        1.2.0
       </span>
     </div>
   </div>
@@ -66,8 +66,13 @@
       
     </li>
   
-  <li class=" " data-id="nats/NATS/Client/Data" data-name="nats::client::data">
-      <a href="../NATS/Client/Data.html">Data</a>
+  <li class=" " data-id="nats/NATS/Client/Error" data-name="nats::client::error">
+      <a href="../NATS/Client/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="nats/NATS/Client/Headers" data-name="nats::client::headers">
+      <a href="../NATS/Client/Headers.html">Headers</a>
       
     </li>
   
@@ -81,18 +86,8 @@
       
     </li>
   
-  <li class=" " data-id="nats/NATS/Data" data-name="nats::data">
-      <a href="../NATS/Data.html">Data</a>
-      
-    </li>
-  
   <li class=" " data-id="nats/NATS/Error" data-name="nats::error">
       <a href="../NATS/Error.html">Error</a>
-      
-    </li>
-  
-  <li class=" " data-id="nats/NATS/Headers" data-name="nats::headers">
-      <a href="../NATS/Headers.html">Headers</a>
       
     </li>
   
@@ -346,6 +341,11 @@
       
     </li>
   
+  <li class=" " data-id="nats/NATS/JetStream/Headers" data-name="nats::jetstream::headers">
+      <a href="../NATS/JetStream/Headers.html">Headers</a>
+      
+    </li>
+  
   <li class="parent " data-id="nats/NATS/JetStream/Message" data-name="nats::jetstream::message">
       <a href="../NATS/JetStream/Message.html">Message</a>
       
@@ -383,6 +383,11 @@
   
   <li class=" " data-id="nats/NATS/KV/Client" data-name="nats::kv::client">
       <a href="../NATS/KV/Client.html">Client</a>
+      
+    </li>
+  
+  <li class=" " data-id="nats/NATS/KV/Data" data-name="nats::kv::data">
+      <a href="../NATS/KV/Data.html">Data</a>
       
     </li>
   
@@ -476,6 +481,11 @@
       
     </li>
   
+  <li class=" " data-id="nats/NATS/Objects/Client/Watch" data-name="nats::objects::client::watch">
+      <a href="../NATS/Objects/Client/Watch.html">Watch</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -486,6 +496,11 @@
       
     </li>
   
+  <li class=" " data-id="nats/NATS/Objects/Headers" data-name="nats::objects::headers">
+      <a href="../NATS/Objects/Headers.html">Headers</a>
+      
+    </li>
+  
   <li class=" " data-id="nats/NATS/Objects/KeyError" data-name="nats::objects::keyerror">
       <a href="../NATS/Objects/KeyError.html">KeyError</a>
       
@@ -493,6 +508,11 @@
   
 </ul>
 
+      
+    </li>
+  
+  <li class=" " data-id="nats/NATS/Payload" data-name="nats::payload">
+      <a href="../NATS/Payload.html">Payload</a>
       
     </li>
   
@@ -585,22 +605,30 @@ servers.</p>
   </h2>
   
     
-      jetstream.cr
+      <a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L9" target="_blank">
+        client.cr
+      </a>
     
     <br/>
   
     
-      kv.cr
+      <a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L982" target="_blank">
+        jetstream.cr
+      </a>
     
     <br/>
   
     
-      nats.cr
+      <a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L532" target="_blank">
+        kv.cr
+      </a>
     
     <br/>
   
     
-      objects.cr
+      <a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/objects.cr#L340" target="_blank">
+        objects.cr
+      </a>
     
     <br/>
   
@@ -654,21 +682,21 @@ servers.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28uri%3AURI%2Cping_interval%3D2.minutes%2Cmax_pings_out%3D2%29-class-method" class="signature"><strong>.new</strong>(uri : URI, ping_interval = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>)</a>
-        
-          <div class="summary"><p>Connect to a single NATS server at the given URI</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new%28servers%3AArray%28URI%29%2Cping_interval%3ATime%3A%3ASpan%3D2.minutes%2Cmax_pings_out%3D2%29-class-method" class="signature"><strong>.new</strong>(servers : Array(URI), ping_interval : Time::Span = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>)</a>
+        <a href="#new%28servers%3AArray%28URI%29%2Cping_interval%3ATime%3A%3ASpan%3D2.minutes%2Cmax_pings_out%3D2%2Cnkeys_file%3AString%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(servers : Array(URI), ping_interval : Time::Span = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>, nkeys_file : String? = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Connect to a NATS cluster at the given URIs</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28%2A%2Cping_interval%3D2.minutes%2Cmax_pings_out%3D2%29-class-method" class="signature"><strong>.new</strong>(*, ping_interval = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>)</a>
+        <a href="#new%28uri%3AURI%2Cping_interval%3D2.minutes%2Cmax_pings_out%3D2%2Cnkeys_file%3AString%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(uri : URI, ping_interval = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>, nkeys_file : String? = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Connect to a single NATS server at the given URI</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28%2A%2Cping_interval%3D2.minutes%2Cmax_pings_out%3D2%2Cnkeys_file%3AString%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(*, ping_interval = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>, nkeys_file : String? = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -749,28 +777,33 @@ servers.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#publish%28subject%3AString%2Cmessage%3AData%3DBytes.empty%2Creply_to%3AString%3F%3Dnil%2Cheaders%3AMessage%3A%3AHeaders%3F%3Dnil%29%3ANil-instance-method" class="signature"><strong>#publish</strong>(subject : String, message : Data = <span class="t">Bytes</span>.empty, reply_to : String? = <span class="n">nil</span>, headers : Message::Headers? = <span class="n">nil</span>) : Nil</a>
+        <a href="#publish%28subject%3AString%2Cdata%3APayload%3DBytes.empty%2Creply_to%3AString%3F%3Dnil%2Cheaders%3AHeaders%3F%3Dnil%29%3ANil-instance-method" class="signature"><strong>#publish</strong>(subject : String, data : Payload = <span class="t">Bytes</span>.empty, reply_to : String? = <span class="n">nil</span>, headers : Headers? = <span class="n">nil</span>) : Nil</a>
         
-          <div class="summary"><p>Publish the given message body (either <code>Bytes</code> for binary data or <code>String</code> for text) on the given NATS subject, optionally supplying a <code>reply_to</code> subject (if expecting a reply or to notify the receiver where to send updates) and any <code>headers</code>.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#reply%28msg%3AMessage%2Cbody%3AData%29%3ANil-instance-method" class="signature"><strong>#reply</strong>(msg : Message, body : Data) : Nil</a>
-        
-          <div class="summary"><p>Send the given <code>body</code> to the <code>msg</code>'s <code>reply_to</code> subject, often used in a request/reply messaging model.</p></div>
+          <div class="summary"><p>Publish the given message data (either <code>Bytes</code> for binary data or <code>String</code> for text) on the given NATS subject, optionally supplying a <code>reply_to</code> subject (if expecting a reply or to notify the receiver where to send updates) and any <code>headers</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#request%28subject%3AString%2Cmessage%3AData%3D%22%22%2Ctimeout%3ATime%3A%3ASpan%3D2.seconds%2Cheaders%3AHeaders%3F%3Dnil%29%3AMessage%3F-instance-method" class="signature"><strong>#request</strong>(subject : String, message : Data = <span class="s">&quot;&quot;</span>, timeout : Time::Span = <span class="n">2</span>.seconds, headers : Headers? = <span class="n">nil</span>) : Message?</a>
+        <a href="#publish%28message%3AMessage%29%3ANil-instance-method" class="signature"><strong>#publish</strong>(message : Message) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reply%28msg%3AMessage%2Cdata%3APayload%29%3ANil-instance-method" class="signature"><strong>#reply</strong>(msg : Message, data : Payload) : Nil</a>
+        
+          <div class="summary"><p>Send the given <code>data</code> to the <code>msg</code>'s <code>reply_to</code> subject, often used in a request/reply messaging model.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#request%28subject%3AString%2Cdata%3APayload%3D%22%22%2Ctimeout%3ATime%3A%3ASpan%3D2.seconds%2Cheaders%3AHeaders%3F%3Dnil%29%3AMessage%3F-instance-method" class="signature"><strong>#request</strong>(subject : String, data : Payload = <span class="s">&quot;&quot;</span>, timeout : Time::Span = <span class="n">2</span>.seconds, headers : Headers? = <span class="n">nil</span>) : Message?</a>
         
           <div class="summary"><p>Make a synchronous request to subscribers of the given <code>subject</code>, waiting up to <code>timeout</code> for a response from any of the subscribers.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#request%28subject%3AString%2Cmessage%3AData%3D%22%22%2Ctimeout%3D2.seconds%2C%26block%3AMessage-%3E%29%3ANil-instance-method" class="signature"><strong>#request</strong>(subject : String, message : Data = <span class="s">&quot;&quot;</span>, timeout = <span class="n">2</span>.seconds, &block : Message -> ) : Nil</a>
+        <a href="#request%28subject%3AString%2Cdata%3APayload%3D%22%22%2Ctimeout%3D2.seconds%2C%26block%3AMessage-%3E%29%3ANil-instance-method" class="signature"><strong>#request</strong>(subject : String, data : Payload = <span class="s">&quot;&quot;</span>, timeout = <span class="n">2</span>.seconds, &block : Message -> ) : Nil</a>
         
           <div class="summary"><p>Make an asynchronous request to subscribers of the given <code>subject</code>, not waiting for a response.</p></div>
         
@@ -789,7 +822,7 @@ servers.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#subscribe%28subject%3AString%2Cqueue_group%3AString%3F%3Dnil%2Csid%3D%40current_sid.add%281%29%2C%26block%3AMessage%2CSubscription-%3E%29%3ASubscription-instance-method" class="signature"><strong>#subscribe</strong>(subject : String, queue_group : String? = <span class="n">nil</span>, sid = @current_sid.add(<span class="n">1</span>), &block : Message, Subscription -> ) : Subscription</a>
+        <a href="#subscribe%28subject%3AString%2Cqueue_group%3AString%3F%3Dnil%2Csid%3D%40current_sid.add%281%29%2Cmax_in_flight%3D64000%2C%26block%3AMessage%2CSubscription-%3E%29%3ASubscription-instance-method" class="signature"><strong>#subscribe</strong>(subject : String, queue_group : String? = <span class="n">nil</span>, sid = @current_sid.add(<span class="n">1</span>), max_in_flight = <span class="n">64000</span>, &block : Message, Subscription -> ) : Subscription</a>
         
           <div class="summary"><p>Subscribe to the given <code>subject</code>, optionally with a <code>queue_group</code> (so that each message is delivered to this application once instead of once for each instance of the application), executing the given block for each message.</p></div>
         
@@ -849,32 +882,12 @@ servers.</p>
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(uri:URI,ping_interval=2.minutes,max_pings_out=2)-class-method">
+    <div class="entry-detail" id="new(servers:Array(URI),ping_interval:Time::Span=2.minutes,max_pings_out=2,nkeys_file:String?=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(uri : URI, ping_interval = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>)
+        def self.<strong>new</strong>(servers : Array(URI), ping_interval : Time::Span = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>, nkeys_file : String? = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28uri%3AURI%2Cping_interval%3D2.minutes%2Cmax_pings_out%3D2%29-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Connect to a single NATS server at the given URI</p>
-<pre><code class="language-crystal">nats <span class="o">=</span> <span class="t">NATS</span><span class="t">::</span><span class="t">Client</span>.<span class="k">new</span>(<span class="t">URI</span>.parse(<span class="s">&quot;nats://nats.example.com&quot;</span>))</code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="new(servers:Array(URI),ping_interval:Time::Span=2.minutes,max_pings_out=2)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(servers : Array(URI), ping_interval : Time::Span = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>)
-
-        <a class="method-permalink" href="#new%28servers%3AArray%28URI%29%2Cping_interval%3ATime%3A%3ASpan%3D2.minutes%2Cmax_pings_out%3D2%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28servers%3AArray%28URI%29%2Cping_interval%3ATime%3A%3ASpan%3D2.minutes%2Cmax_pings_out%3D2%2Cnkeys_file%3AString%3F%3Dnil%29-class-method">#</a>
       </div>
       
         <div class="doc">
@@ -890,19 +903,45 @@ servers.</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L93" target="_blank">View source</a>]
+        
       </div>
     </div>
   
-    <div class="entry-detail" id="new(*,ping_interval=2.minutes,max_pings_out=2)-class-method">
+    <div class="entry-detail" id="new(uri:URI,ping_interval=2.minutes,max_pings_out=2,nkeys_file:String?=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(*, ping_interval = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>)
+        def self.<strong>new</strong>(uri : URI, ping_interval = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>, nkeys_file : String? = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28%2A%2Cping_interval%3D2.minutes%2Cmax_pings_out%3D2%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28uri%3AURI%2Cping_interval%3D2.minutes%2Cmax_pings_out%3D2%2Cnkeys_file%3AString%3F%3Dnil%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Connect to a single NATS server at the given URI</p>
+<pre><code class="language-crystal">nats <span class="o">=</span> <span class="t">NATS</span><span class="t">::</span><span class="t">Client</span>.<span class="k">new</span>(<span class="t">URI</span>.parse(<span class="s">&quot;nats://nats.example.com&quot;</span>))</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L75" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(*,ping_interval=2.minutes,max_pings_out=2,nkeys_file:String?=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(*, ping_interval = <span class="n">2</span>.minutes, max_pings_out = <span class="n">2</span>, nkeys_file : String? = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28%2A%2Cping_interval%3D2.minutes%2Cmax_pings_out%3D2%2Cnkeys_file%3AString%3F%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -939,6 +978,8 @@ associated with this client.</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L653" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -957,6 +998,8 @@ associated with this client.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L457" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -977,6 +1020,8 @@ the NATS server.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/jetstream.cr#L985" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -999,6 +1044,8 @@ the NATS server.</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L536" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -1012,6 +1059,8 @@ the NATS server.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/objects.cr#L341" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1035,6 +1084,8 @@ nats.on_disconnect { <span class="t">Datadog</span>.metrics.increment <span clas
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L685" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -1056,6 +1107,8 @@ nats.on_error { <span class="o">|</span>error<span class="o">|</span> <span clas
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L672" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1079,6 +1132,8 @@ nats.on_reconnect { <span class="t">Datadog</span>.metrics.increment <span class
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L698" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -1093,20 +1148,22 @@ nats.on_reconnect { <span class="t">Datadog</span>.metrics.increment <span class
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L472" target="_blank">View source</a>]
+        
       </div>
     </div>
   
-    <div class="entry-detail" id="publish(subject:String,message:Data=Bytes.empty,reply_to:String?=nil,headers:Message::Headers?=nil):Nil-instance-method">
+    <div class="entry-detail" id="publish(subject:String,data:Payload=Bytes.empty,reply_to:String?=nil,headers:Headers?=nil):Nil-instance-method">
       <div class="signature">
         
-        def <strong>publish</strong>(subject : String, message : <a href="../NATS/Client/Data.html">Data</a> = <span class="t">Bytes</span>.empty, reply_to : String? = <span class="n">nil</span>, headers : <a href="../NATS/Message/Headers.html">Message::Headers</a>? = <span class="n">nil</span>) : Nil
+        def <strong>publish</strong>(subject : String, data : <a href="../NATS/Payload.html">Payload</a> = <span class="t">Bytes</span>.empty, reply_to : String? = <span class="n">nil</span>, headers : <a href="../NATS/Client/Headers.html">Headers</a>? = <span class="n">nil</span>) : Nil
 
-        <a class="method-permalink" href="#publish%28subject%3AString%2Cmessage%3AData%3DBytes.empty%2Creply_to%3AString%3F%3Dnil%2Cheaders%3AMessage%3A%3AHeaders%3F%3Dnil%29%3ANil-instance-method">#</a>
+        <a class="method-permalink" href="#publish%28subject%3AString%2Cdata%3APayload%3DBytes.empty%2Creply_to%3AString%3F%3Dnil%2Cheaders%3AHeaders%3F%3Dnil%29%3ANil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Publish the given message body (either <code>Bytes</code> for binary data or <code>String</code> for text) on the given NATS subject, optionally supplying a <code>reply_to</code> subject (if expecting a reply or to notify the receiver where to send updates) and any <code>headers</code>.</p>
+          <p>Publish the given message data (either <code>Bytes</code> for binary data or <code>String</code> for text) on the given NATS subject, optionally supplying a <code>reply_to</code> subject (if expecting a reply or to notify the receiver where to send updates) and any <code>headers</code>.</p>
 <pre><code class="language-crystal"><span class="c"># Send an empty message to a subject</span>
 nats.publish <span class="s">&quot;hello&quot;</span>
 
@@ -1118,7 +1175,7 @@ nats.publish <span class="s">&quot;orders.</span><span class="i">#{</span>order.
 reply_subject <span class="o">=</span> <span class="s">&quot;replies.orders.list.customer.123&quot;</span>
 orders <span class="o">=</span> <span class="o">[]</span> <span class="k">of</span> <span class="t">Order</span>
 nats.subscribe reply_subject <span class="k">do</span> <span class="o">|</span>msg<span class="o">|</span>
-  <span class="k">case</span> result <span class="o">=</span> (<span class="t">Order</span> <span class="o">|</span> <span class="t">Complete</span>).from_json(<span class="t">String</span>.<span class="k">new</span>(msg.body))
+  <span class="k">case</span> result <span class="o">=</span> (<span class="t">Order</span> <span class="o">|</span> <span class="t">Complete</span>).from_json(msg.data)
   <span class="k">in</span> <span class="t">Order</span>
     orders <span class="o">&lt;&lt;</span> result
   <span class="k">in</span> <span class="t">Complete</span>
@@ -1132,29 +1189,47 @@ nats.publish <span class="s">&quot;orders.list.customer.123&quot;</span>, reply_
 nats.jetstream.subscribe consumer_subject, queue_group: <span class="s">&quot;my-service&quot;</span> <span class="k">do</span> <span class="o">|</span>msg<span class="o">|</span>
   <span class="c"># ...</span>
 <span class="k">end</span>
-nats.publish orders_subject, order.to_json, headers: <span class="t">NATS</span><span class="t">::</span><span class="t">Message</span><span class="t">::</span><span class="t">Headers</span>{
+nats.publish orders_subject, order.to_json, headers: {
   <span class="c"># Deduplicate using the equivalent of a cache key</span>
-  <span class="s">&quot;Nats-Msg-Id&quot;</span> => <span class="s">&quot;order-submitted-</span><span class="i">#{</span>order.id<span class="i">}</span><span class="s">-</span><span class="i">#{</span>order.updated_at.to_json<span class="i">}</span><span class="s">&quot;</span>,
+  <span class="s">&quot;Nats-Msg-Id&quot;</span> =&gt; <span class="s">&quot;order-submitted-</span><span class="i">#{</span>order.id<span class="i">}</span><span class="s">-</span><span class="i">#{</span>order.updated_at.to_json<span class="i">}</span><span class="s">&quot;</span>,
 }</code></pre>
         </div>
       
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L396" target="_blank">View source</a>]
+        
       </div>
     </div>
   
-    <div class="entry-detail" id="reply(msg:Message,body:Data):Nil-instance-method">
+    <div class="entry-detail" id="publish(message:Message):Nil-instance-method">
       <div class="signature">
         
-        def <strong>reply</strong>(msg : <a href="../NATS/Message.html">Message</a>, body : <a href="../NATS/Client/Data.html">Data</a>) : Nil
+        def <strong>publish</strong>(message : <a href="../NATS/Message.html">Message</a>) : Nil
 
-        <a class="method-permalink" href="#reply%28msg%3AMessage%2Cbody%3AData%29%3ANil-instance-method">#</a>
+        <a class="method-permalink" href="#publish%28message%3AMessage%29%3ANil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L452" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reply(msg:Message,data:Payload):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>reply</strong>(msg : <a href="../NATS/Message.html">Message</a>, data : <a href="../NATS/Payload.html">Payload</a>) : Nil
+
+        <a class="method-permalink" href="#reply%28msg%3AMessage%2Cdata%3APayload%29%3ANil-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Send the given <code>body</code> to the <code>msg</code>'s <code>reply_to</code> subject, often used in a
+          <p>Send the given <code>data</code> to the <code>msg</code>'s <code>reply_to</code> subject, often used in a
 request/reply messaging model.</p>
 <pre><code class="language-crystal">nats.subscribe <span class="s">&quot;orders.*&quot;</span>, queue_group: <span class="s">&quot;orders-service&quot;</span> <span class="k">do</span> <span class="o">|</span>msg<span class="o">|</span>
   _, id <span class="o">=</span> msg.subject.split(<span class="s">&#39;.&#39;</span>) <span class="c"># Similar to HTTP path routing</span>
@@ -1170,15 +1245,17 @@ request/reply messaging model.</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L355" target="_blank">View source</a>]
+        
       </div>
     </div>
   
-    <div class="entry-detail" id="request(subject:String,message:Data=&quot;&quot;,timeout:Time::Span=2.seconds,headers:Headers?=nil):Message?-instance-method">
+    <div class="entry-detail" id="request(subject:String,data:Payload=&quot;&quot;,timeout:Time::Span=2.seconds,headers:Headers?=nil):Message?-instance-method">
       <div class="signature">
         
-        def <strong>request</strong>(subject : String, message : <a href="../NATS/Client/Data.html">Data</a> = <span class="s">&quot;&quot;</span>, timeout : Time::Span = <span class="n">2</span>.seconds, headers : <a href="../NATS/Headers.html">Headers</a>? = <span class="n">nil</span>) : <a href="../NATS/Message.html">Message</a>?
+        def <strong>request</strong>(subject : String, data : <a href="../NATS/Payload.html">Payload</a> = <span class="s">&quot;&quot;</span>, timeout : Time::Span = <span class="n">2</span>.seconds, headers : <a href="../NATS/Client/Headers.html">Headers</a>? = <span class="n">nil</span>) : <a href="../NATS/Message.html">Message</a>?
 
-        <a class="method-permalink" href="#request%28subject%3AString%2Cmessage%3AData%3D%22%22%2Ctimeout%3ATime%3A%3ASpan%3D2.seconds%2Cheaders%3AHeaders%3F%3Dnil%29%3AMessage%3F-instance-method">#</a>
+        <a class="method-permalink" href="#request%28subject%3AString%2Cdata%3APayload%3D%22%22%2Ctimeout%3ATime%3A%3ASpan%3D2.seconds%2Cheaders%3AHeaders%3F%3Dnil%29%3AMessage%3F-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1197,15 +1274,17 @@ the <code>timeout</code> elapses, <code>nil</code> is returned.</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L293" target="_blank">View source</a>]
+        
       </div>
     </div>
   
-    <div class="entry-detail" id="request(subject:String,message:Data=&quot;&quot;,timeout=2.seconds,&amp;block:Message-&gt;):Nil-instance-method">
+    <div class="entry-detail" id="request(subject:String,data:Payload=&quot;&quot;,timeout=2.seconds,&amp;block:Message-&gt;):Nil-instance-method">
       <div class="signature">
         
-        def <strong>request</strong>(subject : String, message : <a href="../NATS/Client/Data.html">Data</a> = <span class="s">&quot;&quot;</span>, timeout = <span class="n">2</span>.seconds, &block : <a href="../NATS/Message.html">Message</a> -> ) : Nil
+        def <strong>request</strong>(subject : String, data : <a href="../NATS/Payload.html">Payload</a> = <span class="s">&quot;&quot;</span>, timeout = <span class="n">2</span>.seconds, &block : <a href="../NATS/Message.html">Message</a> -> ) : Nil
 
-        <a class="method-permalink" href="#request%28subject%3AString%2Cmessage%3AData%3D%22%22%2Ctimeout%3D2.seconds%2C%26block%3AMessage-%3E%29%3ANil-instance-method">#</a>
+        <a class="method-permalink" href="#request%28subject%3AString%2Cdata%3APayload%3D%22%22%2Ctimeout%3D2.seconds%2C%26block%3AMessage-%3E%29%3ANil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1217,6 +1296,8 @@ the block.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L324" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1231,6 +1312,8 @@ the block.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1251,15 +1334,17 @@ the block.</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L54" target="_blank">View source</a>]
+        
       </div>
     </div>
   
-    <div class="entry-detail" id="subscribe(subject:String,queue_group:String?=nil,sid=@current_sid.add(1),&amp;block:Message,Subscription-&gt;):Subscription-instance-method">
+    <div class="entry-detail" id="subscribe(subject:String,queue_group:String?=nil,sid=@current_sid.add(1),max_in_flight=64000,&amp;block:Message,Subscription-&gt;):Subscription-instance-method">
       <div class="signature">
         
-        def <strong>subscribe</strong>(subject : String, queue_group : String? = <span class="n">nil</span>, sid = @current_sid.add(<span class="n">1</span>), &block : <a href="../NATS/Message.html">Message</a>, <a href="../NATS/Subscription.html">Subscription</a> -> ) : <a href="../NATS/Subscription.html">Subscription</a>
+        def <strong>subscribe</strong>(subject : String, queue_group : String? = <span class="n">nil</span>, sid = @current_sid.add(<span class="n">1</span>), max_in_flight = <span class="n">64000</span>, &block : <a href="../NATS/Message.html">Message</a>, <a href="../NATS/Subscription.html">Subscription</a> -> ) : <a href="../NATS/Subscription.html">Subscription</a>
 
-        <a class="method-permalink" href="#subscribe%28subject%3AString%2Cqueue_group%3AString%3F%3Dnil%2Csid%3D%40current_sid.add%281%29%2C%26block%3AMessage%2CSubscription-%3E%29%3ASubscription-instance-method">#</a>
+        <a class="method-permalink" href="#subscribe%28subject%3AString%2Cqueue_group%3AString%3F%3Dnil%2Csid%3D%40current_sid.add%281%29%2Cmax_in_flight%3D64000%2C%26block%3AMessage%2CSubscription-%3E%29%3ASubscription-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1272,7 +1357,7 @@ message.</p>
 
 nats <span class="o">=</span> <span class="t">NATS</span><span class="t">::</span><span class="t">Client</span>.<span class="k">new</span>
 nats.subscribe <span class="s">&quot;orders.created&quot;</span> <span class="k">do</span> <span class="o">|</span>msg<span class="o">|</span>
-  order <span class="o">=</span> <span class="t">Order</span>.from_json(<span class="t">String</span>.<span class="k">new</span>(msg.body))
+  order <span class="o">=</span> <span class="t">Order</span>.from_json(msg.data)
 
   <span class="c"># ...</span>
 <span class="k">end</span></code></pre>
@@ -1280,6 +1365,8 @@ nats.subscribe <span class="s">&quot;orders.created&quot;</span> <span class="k"
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L224" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1299,6 +1386,8 @@ nats.subscribe <span class="s">&quot;orders.created&quot;</span> <span class="k"
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L261" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1329,6 +1418,8 @@ spawn <span class="k">do</span>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/client.cr#L256" target="_blank">View source</a>]
         
       </div>
     </div>

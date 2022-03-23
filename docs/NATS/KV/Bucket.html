@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Crystal Docs 1.2.0">
-<meta name="crystal_docs.project_version" content="1.2.0-dev">
+<meta name="crystal_docs.project_version" content="1.2.0">
 <meta name="crystal_docs.project_name" content="nats">
 
 
@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="nats">
-  <title>NATS::KV::Bucket - nats 1.2.0-dev</title>
+  <title>NATS::KV::Bucket - nats 1.2.0</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -39,7 +39,7 @@
       </h1>
 
       <span class="project-version">
-        1.2.0-dev
+        1.2.0
       </span>
     </div>
   </div>
@@ -66,8 +66,13 @@
       
     </li>
   
-  <li class=" " data-id="nats/NATS/Client/Data" data-name="nats::client::data">
-      <a href="../../NATS/Client/Data.html">Data</a>
+  <li class=" " data-id="nats/NATS/Client/Error" data-name="nats::client::error">
+      <a href="../../NATS/Client/Error.html">Error</a>
+      
+    </li>
+  
+  <li class=" " data-id="nats/NATS/Client/Headers" data-name="nats::client::headers">
+      <a href="../../NATS/Client/Headers.html">Headers</a>
       
     </li>
   
@@ -81,18 +86,8 @@
       
     </li>
   
-  <li class=" " data-id="nats/NATS/Data" data-name="nats::data">
-      <a href="../../NATS/Data.html">Data</a>
-      
-    </li>
-  
   <li class=" " data-id="nats/NATS/Error" data-name="nats::error">
       <a href="../../NATS/Error.html">Error</a>
-      
-    </li>
-  
-  <li class=" " data-id="nats/NATS/Headers" data-name="nats::headers">
-      <a href="../../NATS/Headers.html">Headers</a>
       
     </li>
   
@@ -346,6 +341,11 @@
       
     </li>
   
+  <li class=" " data-id="nats/NATS/JetStream/Headers" data-name="nats::jetstream::headers">
+      <a href="../../NATS/JetStream/Headers.html">Headers</a>
+      
+    </li>
+  
   <li class="parent " data-id="nats/NATS/JetStream/Message" data-name="nats::jetstream::message">
       <a href="../../NATS/JetStream/Message.html">Message</a>
       
@@ -383,6 +383,11 @@
   
   <li class=" " data-id="nats/NATS/KV/Client" data-name="nats::kv::client">
       <a href="../../NATS/KV/Client.html">Client</a>
+      
+    </li>
+  
+  <li class=" " data-id="nats/NATS/KV/Data" data-name="nats::kv::data">
+      <a href="../../NATS/KV/Data.html">Data</a>
       
     </li>
   
@@ -476,6 +481,11 @@
       
     </li>
   
+  <li class=" " data-id="nats/NATS/Objects/Client/Watch" data-name="nats::objects::client::watch">
+      <a href="../../NATS/Objects/Client/Watch.html">Watch</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -486,6 +496,11 @@
       
     </li>
   
+  <li class=" " data-id="nats/NATS/Objects/Headers" data-name="nats::objects::headers">
+      <a href="../../NATS/Objects/Headers.html">Headers</a>
+      
+    </li>
+  
   <li class=" " data-id="nats/NATS/Objects/KeyError" data-name="nats::objects::keyerror">
       <a href="../../NATS/Objects/KeyError.html">KeyError</a>
       
@@ -493,6 +508,11 @@
   
 </ul>
 
+      
+    </li>
+  
+  <li class=" " data-id="nats/NATS/Payload" data-name="nats::payload">
+      <a href="../../NATS/Payload.html">Payload</a>
       
     </li>
   
@@ -573,7 +593,9 @@
   </h2>
   
     
-      kv.cr
+      <a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L41" target="_blank">
+        kv.cr
+      </a>
     
     <br/>
   
@@ -689,7 +711,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#watch%28key%3AString%2C%2A%2Cignore_deletes%3Dfalse%2C%26block%3AEntry%2CWatch-%3E%29-instance-method" class="signature"><strong>#watch</strong>(key : String, *, ignore_deletes = <span class="n">false</span>, &block : Entry, Watch -> )</a>
+        <a href="#watch%28key%3AString%2C%2A%2Cignore_deletes%3Dfalse%2Cinclude_history%3Dtrue%2C%26block%3AEntry%2CWatch-%3E%29-instance-method" class="signature"><strong>#watch</strong>(key : String, *, ignore_deletes = <span class="n">false</span>, include_history = <span class="n">true</span>, &block : Entry, Watch -> )</a>
         
           <div class="summary"><p>Watch the given key (or wildcard) for changes and yielding them to the block.</p></div>
         
@@ -752,7 +774,7 @@
     <div class="entry-detail" id="[]=(key:String,value:Data)-instance-method">
       <div class="signature">
         
-        def <strong>[]=</strong>(key : String, value : <a href="../../NATS/Data.html">Data</a>)
+        def <strong>[]=</strong>(key : String, value : <a href="../../NATS/KV/Data.html">Data</a>)
 
         <a class="method-permalink" href="#%5B%5D%3D%28key%3AString%2Cvalue%3AData%29-instance-method">#</a>
       </div>
@@ -764,6 +786,8 @@
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L100" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -787,6 +811,8 @@ to be able to get deleted keys, you should use <code><a href="../../NATS/KV/Buck
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L121" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -806,6 +832,8 @@ does not yet exist.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L140" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -827,6 +855,8 @@ deletion.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L156" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -854,6 +884,8 @@ ignore deleted messages.</p>
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L113" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -875,6 +907,8 @@ does not exist or if it's been deleted with <code>ignore_deletes</code> set to
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L130" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -893,6 +927,8 @@ does not exist or if it's been deleted with <code>ignore_deletes</code> set to
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L174" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -913,6 +949,8 @@ does not exist or if it's been deleted with <code>ignore_deletes</code> set to
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L169" target="_blank">View source</a>]
+        
       </div>
     </div>
   
@@ -926,6 +964,8 @@ does not exist or if it's been deleted with <code>ignore_deletes</code> set to
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L42" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -949,13 +989,15 @@ set to <code><a href="../../NATS/KV/Entry/Operation.html#Purge">KV::Entry::Opera
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L164" target="_blank">View source</a>]
+        
       </div>
     </div>
   
     <div class="entry-detail" id="put(key:String,value:Data)-instance-method">
       <div class="signature">
         
-        def <strong>put</strong>(key : String, value : <a href="../../NATS/Data.html">Data</a>)
+        def <strong>put</strong>(key : String, value : <a href="../../NATS/KV/Data.html">Data</a>)
 
         <a class="method-permalink" href="#put%28key%3AString%2Cvalue%3AData%29-instance-method">#</a>
       </div>
@@ -968,19 +1010,23 @@ set to <code><a href="../../NATS/KV/Entry/Operation.html#Purge">KV::Entry::Opera
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L91" target="_blank">View source</a>]
+        
       </div>
     </div>
   
     <div class="entry-detail" id="set(key:String,value:Data)-instance-method">
       <div class="signature">
         
-        def <strong>set</strong>(key : String, value : <a href="../../NATS/Data.html">Data</a>)
+        def <strong>set</strong>(key : String, value : <a href="../../NATS/KV/Data.html">Data</a>)
 
         <a class="method-permalink" href="#set%28key%3AString%2Cvalue%3AData%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L95" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -995,6 +1041,8 @@ set to <code><a href="../../NATS/KV/Entry/Operation.html#Purge">KV::Entry::Opera
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1019,15 +1067,17 @@ use <code><a href="../../NATS/KV/Bucket.html#put%28key%3AString%2Cvalue%3AData%2
       <br/>
       <div>
         
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L149" target="_blank">View source</a>]
+        
       </div>
     </div>
   
-    <div class="entry-detail" id="watch(key:String,*,ignore_deletes=false,&amp;block:Entry,Watch-&gt;)-instance-method">
+    <div class="entry-detail" id="watch(key:String,*,ignore_deletes=false,include_history=true,&amp;block:Entry,Watch-&gt;)-instance-method">
       <div class="signature">
         
-        def <strong>watch</strong>(key : String, *, ignore_deletes = <span class="n">false</span>, &block : <a href="../../NATS/KV/Entry.html">Entry</a>, <a href="../../NATS/KV/Watch.html">Watch</a> -> )
+        def <strong>watch</strong>(key : String, *, ignore_deletes = <span class="n">false</span>, include_history = <span class="n">true</span>, &block : <a href="../../NATS/KV/Entry.html">Entry</a>, <a href="../../NATS/KV/Watch.html">Watch</a> -> )
 
-        <a class="method-permalink" href="#watch%28key%3AString%2C%2A%2Cignore_deletes%3Dfalse%2C%26block%3AEntry%2CWatch-%3E%29-instance-method">#</a>
+        <a class="method-permalink" href="#watch%28key%3AString%2C%2A%2Cignore_deletes%3Dfalse%2Cinclude_history%3Dtrue%2C%26block%3AEntry%2CWatch-%3E%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1049,6 +1099,8 @@ to run this method inside a <code>spawn</code> block.</p>
 <p>You can also use this method to wait for a specific key to change once:</p>
 <pre><code class="language-crystal">bucket.watch my_key <span class="k">do</span> <span class="o">|</span>entry, watch<span class="o">|</span>
   <span class="c"># react to the key change</span>
+
+
 <span class="k">ensure</span>
   watch.stop <span class="c"># exit the block</span>
 <span class="k">end</span></code></pre>
@@ -1056,6 +1108,8 @@ to run this method inside a <code>spawn</code> block.</p>
       
       <br/>
       <div>
+        
+          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/kv.cr#L208" target="_blank">View source</a>]
         
       </div>
     </div>

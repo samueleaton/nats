@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="nats">
-  <title>NATS::Subscription - nats 1.2.0</title>
+  <title>NATS::Payload - nats 1.2.0</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -511,7 +511,7 @@
       
     </li>
   
-  <li class=" " data-id="nats/NATS/Payload" data-name="nats::payload">
+  <li class=" current" data-id="nats/NATS/Payload" data-name="nats::payload">
       <a href="../NATS/Payload.html">Payload</a>
       
     </li>
@@ -526,7 +526,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="nats/NATS/Subscription" data-name="nats::subscription">
+  <li class="parent " data-id="nats/NATS/Subscription" data-name="nats::subscription">
       <a href="../NATS/Subscription.html">Subscription</a>
       
         <ul>
@@ -560,17 +560,25 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> NATS::Subscription
+  <span class="kind">alias</span> NATS::Payload
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../NATS/Subscription.html">NATS::Subscription</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
 
 
+  <h2>
+    <a id="alias-definition" class="anchor" href="#alias-definition">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Alias Definition
+  </h2>
+  <code>Slice(UInt8) | String</code>
 
 
 
@@ -593,8 +601,8 @@
   </h2>
   
     
-      <a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/subscription.cr#L2" target="_blank">
-        subscription.cr
+      <a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/nats.cr#L39" target="_blank">
+        nats.cr
       </a>
     
     <br/>
@@ -604,78 +612,9 @@
 
 
 
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new%28subject%2Csid%2Cqueue_group%2Cmax_in_flight%3AInt%3D10%2C%26block%3AMessage%2CSubscription-%3E%29-class-method" class="signature"><strong>.new</strong>(subject, sid, queue_group, max_in_flight : Int = <span class="n">10</span>, &block : Message, Subscription -> )</a>
-        
-      </li>
-    
-  </ul>
 
 
 
-
-
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#close-instance-method" class="signature"><strong>#close</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#messages_remaining%3AInt32%3F-instance-method" class="signature"><strong>#messages_remaining</strong> : Int32?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#queue_group%3AString%3F-instance-method" class="signature"><strong>#queue_group</strong> : String?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#send%28message%2C%26on_error%3AException-%3E%29%3ANil-instance-method" class="signature"><strong>#send</strong>(message, &on_error : Exception -> ) : Nil</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#sid%3AInt64-instance-method" class="signature"><strong>#sid</strong> : Int64</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#start-instance-method" class="signature"><strong>#start</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#subject%3AString-instance-method" class="signature"><strong>#subject</strong> : String</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#unsubscribe_after%28messagesmessages_remaining%3AInt32%29-instance-method" class="signature"><strong>#unsubscribe_after</strong>(messages messages_remaining : Int32)</a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -683,196 +622,12 @@
 
 <div class="methods-inherited">
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
 
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(subject,sid,queue_group,max_in_flight:Int=10,&amp;block:Message,Subscription-&gt;)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(subject, sid, queue_group, max_in_flight : Int = <span class="n">10</span>, &block : <a href="../NATS/Message.html">Message</a>, <a href="../NATS/Subscription.html">Subscription</a> -> )
-
-        <a class="method-permalink" href="#new%28subject%2Csid%2Cqueue_group%2Cmax_in_flight%3AInt%3D10%2C%26block%3AMessage%2CSubscription-%3E%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/subscription.cr#L11" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
-
-
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="close-instance-method">
-      <div class="signature">
-        
-        def <strong>close</strong>
-
-        <a class="method-permalink" href="#close-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/subscription.cr#L33" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="messages_remaining:Int32?-instance-method">
-      <div class="signature">
-        
-        def <strong>messages_remaining</strong> : Int32?
-
-        <a class="method-permalink" href="#messages_remaining%3AInt32%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/subscription.cr#L8" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="queue_group:String?-instance-method">
-      <div class="signature">
-        
-        def <strong>queue_group</strong> : String?
-
-        <a class="method-permalink" href="#queue_group%3AString%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/subscription.cr#L7" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="send(message,&amp;on_error:Exception-&gt;):Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>send</strong>(message, &on_error : Exception -> ) : Nil
-
-        <a class="method-permalink" href="#send%28message%2C%26on_error%3AException-%3E%29%3ANil-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/subscription.cr#L37" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="sid:Int64-instance-method">
-      <div class="signature">
-        
-        def <strong>sid</strong> : Int64
-
-        <a class="method-permalink" href="#sid%3AInt64-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/subscription.cr#L6" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="start-instance-method">
-      <div class="signature">
-        
-        def <strong>start</strong>
-
-        <a class="method-permalink" href="#start-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/subscription.cr#L18" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="subject:String-instance-method">
-      <div class="signature">
-        
-        def <strong>subject</strong> : String
-
-        <a class="method-permalink" href="#subject%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/subscription.cr#L5" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="unsubscribe_after(messagesmessages_remaining:Int32)-instance-method">
-      <div class="signature">
-        
-        def <strong>unsubscribe_after</strong>(messages messages_remaining : Int32)
-
-        <a class="method-permalink" href="#unsubscribe_after%28messagesmessages_remaining%3AInt32%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/samueleaton/nats/blob/b0a1170702ca7d68d43dc0567b951ca6ccdd2b95/src/subscription.cr#L15" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
