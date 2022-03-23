@@ -75,7 +75,11 @@ module NATS
     # TODO: Should support duplicate keys. Maybe alias HTTP::Headers like the [Go client](https://github.com/nats-io/nats.go/blob/v1.13.0/nats.go#L3204).
     getter headers : Headers { HTTP::Headers.new }
 
-    def initialize(@subject, @raw_data, @reply_to = nil, @headers = nil)
+    def initialize(@subject, @raw_data : Bytes, @reply_to = nil, @headers = nil)
+    end
+
+    def initialize(@subject, @data : String, @reply_to = nil, @headers = nil)
+      @raw_data = data.to_slice
     end
 
     @[Deprecated("Instantiating a new IO::Memory for each message made them heavier than intended, so we're now recommending using `String.new(msg.raw_data)`")]

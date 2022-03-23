@@ -4,7 +4,7 @@ nats = NATS::Client.new
 
 subscription = nats.subscribe "foo" do |msg|
   if msg.reply_to
-    nats.reply msg, msg.body
+    nats.reply msg, msg.data
   end
 end
 
