@@ -6,6 +6,7 @@ require "openssl"
 require "log"
 
 require "./ext"
+require "./error"
 require "./nuid"
 require "./nkeys"
 require "./client"
@@ -37,25 +38,6 @@ module NATS
 
   alias Payload = String | Bytes
 
-  # Generic error
-  class Error < ::Exception
-  end
-
-  # Raised when trying to reply to a NATS message that is not a reply.
-  class NotAReply < Error
-    getter nats_message : Message
-
-    def initialize(error_message, @nats_message : Message)
-      super error_message
-    end
-  end
-
-  class ServerNotRespondingToPings < Error
-  end
-
-  class UnknownCommand < Error
-  end
-
   struct ServerInfo
     include JSON::Serializable
 
@@ -79,6 +61,7 @@ module NATS
   LOG = ::Log.for(self)
 
   struct Message
+    # See the Crystal [HTTP::Headers API](https://crystal-lang.org/api/latest/HTTP/Headers.html)
     alias Headers = HTTP::Headers
 
     getter subject : String

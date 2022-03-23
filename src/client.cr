@@ -1,4 +1,6 @@
 require "http/headers"
+require "./ext"
+require "./error"
 require "./subscription"
 
 module NATS
@@ -10,6 +12,9 @@ module NATS
     MAX_PUBLISH_SIZE = 1 * MEGABYTE
 
     alias Headers = HTTP::Headers | Hash(String, Array(String) | String)
+
+    class Error < NATS::Error
+    end
 
     # The current state of the client's connection
     enum State
@@ -383,7 +388,7 @@ module NATS
     # nats.jetstream.subscribe consumer_subject, queue_group: "my-service" do |msg|
     #   # ...
     # end
-    # nats.publish orders_subject, order.to_json, headers: NATS::Message::Headers{
+    # nats.publish orders_subject, order.to_json, headers: {
     #   # Deduplicate using the equivalent of a cache key
     #   "Nats-Msg-Id" => "order-submitted-#{order.id}-#{order.updated_at.to_json}",
     # }
