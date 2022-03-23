@@ -32,7 +32,7 @@ module NATS
     end
 
     test "creates an object from a string" do
-      bucket.put "key", "value", headers: NATS::Headers{"foo" => "bar"}
+      bucket.put "key", "value", headers: HTTP::Headers{"foo" => "bar"}
 
       info = bucket.get_info!("key")
 
@@ -57,7 +57,7 @@ module NATS
     end
 
     test "gets keys for a bucket" do
-      bucket.put "key", "value", headers: Headers{"foo" => "bar"}
+      bucket.put "key", "value", headers: HTTP::Headers{"foo" => "bar"}
 
       obj.keys(bucket.name).should contain "key"
     end
