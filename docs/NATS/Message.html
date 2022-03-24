@@ -613,12 +613,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28subject%2Craw_data%3ABytes%2Creply_to%3Dnil%2Cheaders%3Dnil%29-class-method" class="signature"><strong>.new</strong>(subject, raw_data : Bytes, reply_to = <span class="n">nil</span>, headers = <span class="n">nil</span>)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new%28subject%2Cdata%3AString%2Creply_to%3Dnil%2Cheaders%3Dnil%29-class-method" class="signature"><strong>.new</strong>(subject, data : String, reply_to = <span class="n">nil</span>, headers = <span class="n">nil</span>)</a>
+        <a href="#new%28subject%2Cdata%3AString%7CBytes%2Creply_to%3Dnil%2Cheaders%3AClient%3A%3AHeaders%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(subject, data : String | Bytes, reply_to = <span class="n">nil</span>, headers : Client::Headers? = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -733,26 +728,12 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(subject,raw_data:Bytes,reply_to=nil,headers=nil)-class-method">
+    <div class="entry-detail" id="new(subject,data:String|Bytes,reply_to=nil,headers:Client::Headers?=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(subject, raw_data : Bytes, reply_to = <span class="n">nil</span>, headers = <span class="n">nil</span>)
+        def self.<strong>new</strong>(subject, data : String | Bytes, reply_to = <span class="n">nil</span>, headers : <a href="../NATS/Client/Headers.html">Client::Headers</a>? = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28subject%2Craw_data%3ABytes%2Creply_to%3Dnil%2Cheaders%3Dnil%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="new(subject,data:String,reply_to=nil,headers=nil)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(subject, data : String, reply_to = <span class="n">nil</span>, headers = <span class="n">nil</span>)
-
-        <a class="method-permalink" href="#new%28subject%2Cdata%3AString%2Creply_to%3Dnil%2Cheaders%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28subject%2Cdata%3AString%7CBytes%2Creply_to%3Dnil%2Cheaders%3AClient%3A%3AHeaders%3F%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
@@ -843,7 +824,6 @@
         <div class="doc">
           
           <p>Returns the parsed headers data</p>
-<p><span class="flag orange">TODO</span>  Should support duplicate keys. Maybe alias HTTP::Headers like the <a href="https://github.com/nats-io/nats.go/blob/v1.13.0/nats.go#L3204">Go client</a>.</p>
         </div>
       
       <br/>

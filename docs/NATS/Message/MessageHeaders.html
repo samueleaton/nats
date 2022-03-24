@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="nats">
-  <title>NATS::Client::Headers - nats 1.2.0</title>
+  <title>NATS::Message::MessageHeaders - nats 1.2.0</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -56,7 +56,7 @@
       
         <ul>
   
-  <li class="parent open current" data-id="nats/NATS/Client" data-name="nats::client">
+  <li class="parent " data-id="nats/NATS/Client" data-name="nats::client">
       <a href="../../NATS/Client.html">Client</a>
       
         <ul>
@@ -71,7 +71,7 @@
       
     </li>
   
-  <li class=" current" data-id="nats/NATS/Client/Headers" data-name="nats::client::headers">
+  <li class=" " data-id="nats/NATS/Client/Headers" data-name="nats::client::headers">
       <a href="../../NATS/Client/Headers.html">Headers</a>
       
     </li>
@@ -436,13 +436,13 @@
       
     </li>
   
-  <li class="parent " data-id="nats/NATS/Message" data-name="nats::message">
+  <li class="parent open current" data-id="nats/NATS/Message" data-name="nats::message">
       <a href="../../NATS/Message.html">Message</a>
       
         <ul>
   
-  <li class=" " data-id="nats/NATS/Message/Headers" data-name="nats::message::headers">
-      <a href="../../NATS/Message/Headers.html">Headers</a>
+  <li class=" current" data-id="nats/NATS/Message/MessageHeaders" data-name="nats::message::messageheaders">
+      <a href="../../NATS/Message/MessageHeaders.html">MessageHeaders</a>
       
     </li>
   
@@ -560,7 +560,7 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">alias</span> NATS::Client::Headers
+  <span class="kind">alias</span> NATS::Message::MessageHeaders
 
 </h1>
 
@@ -577,8 +577,7 @@
     Overview
   </h2>
 
-  <p>Parsed headers as either <a href="https://crystal-lang.org/api/latest/HTTP/Headers.html">HTTP::Headers from the stdlib</a>
-or a <code>Hash(String, Array(String) | String)</code></p>
+  <p>See the Crystal <a href="https://crystal-lang.org/api/latest/HTTP/Headers.html">HTTP::Headers API</a></p>
 
 
 
@@ -590,7 +589,7 @@ or a <code>Hash(String, Array(String) | String)</code></p>
 </a>
     Alias Definition
   </h2>
-  <code>HTTP::Headers | Hash(String, Array(String) | String)</code>
+  <code>HTTP::Headers</code>
 
 
 
@@ -613,7 +612,7 @@ or a <code>Hash(String, Array(String) | String)</code></p>
   </h2>
   
     
-      client.cr
+      nats.cr
     
     <br/>
   
