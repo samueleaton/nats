@@ -38,6 +38,8 @@ module NATS
   # ```
   @[Experimental("NATS object store is experimental and the API could change")]
   module Objects
+    alias Headers = HTTP::Headers | Hash(String, Array(String) | String)
+
     class Error < ::NATS::Error
     end
 
@@ -104,7 +106,7 @@ module NATS
         @nats.jetstream.stream.delete "OBJ_#{name}"
       end
 
-      def put(bucket : String, key : String, value : IO, description : String? = nil, headers : Headers = Headers.new, chunk_size : Int = DEFAULT_CHUNK_SIZE)
+      def put(bucket : String, key : String, value : IO, description : String? = nil, headers : Headers = HTTP::Headers.new, chunk_size : Int = DEFAULT_CHUNK_SIZE)
         existing = get_info(bucket, key)
         id = NUID.next
         chunk_subject = "$O.#{bucket}.C.#{sanitize_key(key)}"
@@ -135,7 +137,7 @@ module NATS
             chunks: sent,
             digest: Base64.urlsafe_encode(sha.final),
           )
-          @nats.jetstream.publish meta_subject, msg.to_json, headers: Headers{"Nats-Rollup" => "sub"}
+          @nats.jetstream.publish meta_subject, msg.to_json, headers: HTTP::Headers{"Nats-Rollup" => "sub"}
         rescue ex
           @nats.jetstream.stream.purge bucket, subject: chunk_subject
           raise ex
@@ -268,7 +270,7 @@ module NATS
         getter bucket : String
         getter name : String
         getter description : String?
-        getter headers : Headers { Headers.new }
+        getter headers : Headers { HTTP::Headers.new }
         getter nuid : String
         getter size : Int64
         property mtime : Time
@@ -305,7 +307,7 @@ module NATS
         put(key, IO::Memory.new(value), **kwargs)
       end
 
-      def put(key : String, value : IO, *, description : String? = nil, headers : Headers = Headers.new, chunk_size : Int = DEFAULT_CHUNK_SIZE)
+      def put(key : String, value : IO, *, description : String? = nil, headers : Headers = HTTP::Headers.new, chunk_size : Int = DEFAULT_CHUNK_SIZE)
         @client.put(name, key, value, description: description, headers: headers, chunk_size: chunk_size)
       end
 

@@ -1,12 +1,15 @@
 require "json"
 require "./nats"
 require "./error"
+require "./subscription"
 
 module NATS
   # NATS JetStream provides at-least-once delivery guarantees with the
   # possibility of exactly-once for some use cases, allowing NATS to be used for
   # scenarios where 100% delivery of messages and events is required.
   module JetStream
+    alias Headers = HTTP::Headers | Hash(String, Array(String) | String)
+
     class Error < ::NATS::Error
     end
 
@@ -45,7 +48,7 @@ module NATS
         subject : String,
         data : Payload,
         timeout : Time::Span = 2.seconds,
-        headers : Headers = Headers.new,
+        headers : Headers = HTTP::Headers.new,
         message_id : String? = nil,
         expected_last_message_id : String? = nil,
         expected_last_sequence : Int64? = nil,
@@ -270,7 +273,7 @@ module NATS
       # Any headers that were published with this message, including ones
       # interpreted by the NATS server, such as `Nats-Msg-Id` for message
       # deduplication.
-      getter headers : Headers { Headers.new }
+      getter headers : Headers { HTTP::Headers.new }
 
       # Instantiate a `NATS::JetStream::Message` based on a `NATS::Message`.
       # Used by JetStream subscriptions to build `JetStream::Message`
@@ -598,7 +601,7 @@ module NATS
             @[JSON::Field(ignore: true)]
             getter data : String { String.new raw_data }
             @[JSON::Field(key: "hdrs", converter: ::NATS::JetStream::API::V1::StreamGetMsgResponse::Message::HeadersConverter)]
-            getter headers : Headers { Headers.new }
+            getter headers : Headers { HTTP::Headers.new }
             getter time : Time
 
             def on_to_json(builder : JSON::Builder) : Nil
@@ -625,14 +628,13 @@ module NATS
                   # So we want to omit the first line (preamble) and the last
                   # line (it's blank).
                   raw = Base64.decode_string(string)
-                  header_count = raw.count('\n') - 2
-                  headers = Headers.new(initial_capacity: header_count)
+                  headers = HTTP::Headers.new
 
                   raw.each_line do |line|
                     if separator_index = line.index(':')
                       key = line[0...separator_index]
                       value = line[separator_index + 2..]
-                      headers[key] = value
+                      headers.add key, value
                     end
                   end
 

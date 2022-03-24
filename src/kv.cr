@@ -332,7 +332,7 @@ module NATS
       def update(bucket : String, key : String, value : String | Bytes, revision : Int) : Int64?
         validate_key! key
 
-        headers = Headers{
+        headers = HTTP::Headers{
           "Nats-Expected-Last-Subject-Sequence" => revision.to_s,
         }
         case response = @nats.jetstream.publish "$KV.#{bucket}.#{key}", value, headers: headers
@@ -453,7 +453,7 @@ module NATS
       def delete(bucket : String, key : String)
         validate_key! key
 
-        headers = Headers{"KV-Operation" => "DEL"}
+        headers = HTTP::Headers{"KV-Operation" => "DEL"}
         case response = @nats.jetstream.publish "$KV.#{bucket}.#{key}", "", headers: headers
         in JetStream::API::V1::PubAck
           response
@@ -465,7 +465,7 @@ module NATS
       end
 
       def purge(bucket : String, key : String)
-        headers = Headers{
+        headers = HTTP::Headers{
           "KV-Operation" => "PURGE",
           "Nats-Rollup"  => "sub",
         }
