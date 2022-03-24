@@ -11,6 +11,8 @@ module NATS
     MEGABYTE         = 1 << 20
     MAX_PUBLISH_SIZE = 1 * MEGABYTE
 
+    # Parsed headers as either [HTTP::Headers from the stdlib](https://crystal-lang.org/api/latest/HTTP/Headers.html)
+    # or a `Hash(String, Array(String) | String)`
     alias Headers = HTTP::Headers | Hash(String, Array(String) | String)
 
     class Error < NATS::Error

@@ -71,15 +71,23 @@ module NATS
     getter data : String { String.new raw_data }
     getter reply_to : String?
     # Returns the parsed headers data
-    #
-    # TODO: Should support duplicate keys. Maybe alias HTTP::Headers like the [Go client](https://github.com/nats-io/nats.go/blob/v1.13.0/nats.go#L3204).
     getter headers : Headers { HTTP::Headers.new }
 
-    def initialize(@subject, @raw_data : Bytes, @reply_to = nil, @headers = nil)
-    end
+    def initialize(@subject, data : String | Bytes, @reply_to = nil, headers : Client::Headers? = nil)
+      case data
+      in Bytes
+        @raw_data = data
+      in String
+        @raw_data = data.to_slice
+        @data = data
+      end
 
-    def initialize(@subject, @data : String, @reply_to = nil, @headers = nil)
-      @raw_data = data.to_slice
+      case headers
+      when Headers
+        @headers = headers
+      when Hash
+        @headers = http_headers_from_hash headers
+      end
     end
 
     @[Deprecated("Instantiating a new IO::Memory for each message made them heavier than intended, so we're now recommending using `String.new(msg.raw_data)`")]
@@ -90,6 +98,10 @@ module NATS
     @[Deprecated("`body` deprecated in favor of `data` or `raw_data` to conform with NATS protocol nomenclature")]
     def body : Bytes
       @raw_data
+    end
+
+    private def http_headers_from_hash(hash : Hash(String, Array(String) | String))
+      hash.reduce(HTTP::Headers.new) { |hdrs, kv| hdrs.add kv[0], kv[1] }
     end
   end
 end
