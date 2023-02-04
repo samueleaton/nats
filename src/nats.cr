@@ -117,6 +117,7 @@ module NATS
     @disconnect_buffer = IO::Memory.new
     @inbox_prefix = "_INBOX.#{Random::Secure.hex}"
     @inbox_handlers = {} of String => Proc(Message, Nil)
+    @name : String? = nil
 
     # The current state of the connection
     getter state : State = :connecting
@@ -144,9 +145,10 @@ module NATS
       uri : URI,
       ping_interval = 2.minutes,
       max_pings_out = 2,
-      nkeys_file : String? = nil
+      nkeys_file : String? = nil,
+      name : String? = nil
     )
-      new([uri], ping_interval: ping_interval, max_pings_out: max_pings_out, nkeys_file: nkeys_file)
+      new([uri], ping_interval: ping_interval, max_pings_out: max_pings_out, nkeys_file: nkeys_file, name: name)
     end
 
     # Connect to a NATS cluster at the given URIs
@@ -162,12 +164,15 @@ module NATS
       @servers : Array(URI),
       @ping_interval : Time::Span = 2.minutes,
       @max_pings_out = 2,
-      @nkeys_file : String? = nil
+      @nkeys_file : String? = nil,
+      @name : String? = nil
     )
       uri = @servers.sample
       @ping_count = Atomic.new(0)
       @pings = Channel(Channel(Nil)).new(3) # For flushing the connection
       @inbox_handlers = {} of String => Proc(Message, Nil)
+      # if name not specified, it will be derived from connection string path
+      @name ||= uri.path.sub(%r{\A/}, "").presence
 
       case uri.scheme
       when "nats"
@@ -214,7 +219,7 @@ module NATS
         version:  VERSION,
         protocol: 1,
         headers:  true,
-        name:     uri.path.sub(%r{\A/}, "").presence,
+        name:     @name,
         user:     uri.user,
         pass:     uri.password,
       }
