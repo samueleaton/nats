@@ -420,9 +420,31 @@ module NATS
     #   end
     # end
     # ```
-    def reply(msg : Message, data : Payload) : Nil
+    def reply(msg : Message, data : Payload, headers : Headers? = nil) : Nil
       if subject = msg.reply_to
-        publish subject, data
+        publish subject, data, nil, headers
+      end
+    end
+
+    # Same as `#reply` but raises a `NATS::NotAReply` exception if the message doesn't
+    # have a `reply_to` value
+    #
+    # ```
+    # nats.subscribe "orders.*", queue_group: "orders-service" do |msg|
+    #   _, id = msg.subject.split('.') # Similar to HTTP path routing
+    #
+    #   if order = OrderQuery.new.find_by(id: id)
+    #     nats.reply msg, {order: order}.to_json
+    #   else
+    #     nats.reply msg, {error: "No order with that id found"}.to_json
+    #   end
+    # rescue ex : NATS::NotAReply
+    #   # ...
+    # end
+    # ```
+    def reply!(msg : Message, data : Payload, headers : Headers? = nil) : Nil
+      if subject = msg.reply_to
+        publish subject, data, nil, headers
       else
         raise NotAReply.new("Cannot reply to a message that has no return address", msg)
       end
